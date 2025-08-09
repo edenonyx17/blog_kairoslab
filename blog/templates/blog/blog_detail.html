@@ -1,0 +1,11 @@
+{% block content %}
+
+<section>
+<h3>{{ blog.title }}</h3>
+<p>Author: {{ blog.author }}</p>
+<p>{{ blog.body }}</p>
+<p>Date: {{ blog.date_created }}</p>
+</section>
+<a href="{% url 'delete-blog' blog.id %}">Delete</a>
+
+{% endblock content %}
