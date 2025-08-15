@@ -1,11 +1,12 @@
 {% extends 'blogs/base.html' %}
 
 {% block content %}
-
+{% if user.is_authenticated == False %}
 <form method='post'>
 {% csrf_token %}
 {{ form.as_p }}
-<button type='submit'>Submit</button>
+<button type='submit'>Login</button>
 </form>
+{% endif %}
 
 {% endblock content %}
