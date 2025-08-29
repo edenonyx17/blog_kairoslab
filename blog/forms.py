@@ -5,3 +5,6 @@ class BlogForm (forms.ModelForm):
   class Meta:
     model = BlogPost
     fields = ['title', 'author', 'body']
+    widgets = {
+      'body': forms.Textarea(attrs={'rows': 5})
+    }

@@ -1,10 +1,28 @@
-{% extends 'blogs/base.html' %}
+{% extends 'blog/base.html' %}
+
+{% block page_header %}
+    <h1 class="text-center mb-4">All Blog Posts</h1>
+{% endblock page_header %}
 
 {% block content %}
-{% for blog in blogs %}
-<section>
-<h3><a href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a></h3>
-</section>
-{% endfor %}
-
+    {% if blog %}
+        <div class="row">
+            {% for blog in blog %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'blog-detail' blog.id %}">{{ blog.title }}</a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">No Blogs Yet</h4>
+            <p>There are no blog posts yet. Create one to get started!</p>
+        </div>
+    {% endif %}
 {% endblock content %}

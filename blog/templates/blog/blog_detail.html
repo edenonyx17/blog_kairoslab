@@ -1,13 +1,20 @@
-{% extends 'blogs/base.html' %}
+{% extends 'blog/base.html' %}
+
+{% block page_header %}
+    <h1 class="text-center mb-4">{{ blog.title }}</h1>
+{% endblock page_header %}
 
 {% block content %}
-
-<section>
-<h3>{{ blog.title }}</h3>
-<p>Author: {{ blog.author }}</p>
-<p>{{ blog.body }}</p>
-<p>Date: {{ blog.date_created }}</p>
-</section>
-<a href="{% url 'delete-blog' blog.id %}">Delete</a>
-
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text"><strong>Author:</strong> {{ blog.author }}</p>
+            <p class="card-text">{{ blog.body }}</p>
+            <p class="card-text"><small class="text-muted">Posted on: {{ blog.date_created|date:'D d M Y' }}</small></p>
+            {% if blog.date_updated %}
+                <p class="card-text"><small class="text-muted">Updated on: {{ blog.date_updated|date:'D d M Y' }}</small></p>
+            {% endif %}
+            <a href="{% url 'update-blog' blog.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete-blog' blog.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
 {% endblock content %}

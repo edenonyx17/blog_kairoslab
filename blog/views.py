@@ -6,7 +6,7 @@ from django.http import Http404
 
 def home(request):
     """Return the list of blogposts."""
-    blogs = BlogPost.objects.all()
+    blog = BlogPost.objects.all()
     context = {'blog': blog}
     return render(request, template_name='blog/home.html', context=context)
 
@@ -16,7 +16,7 @@ def blog_detail(request, blog_id):
     blog = get_object_or_404(BlogPost, id=blog_id)
     #blog = BlogPost.objects.get(id=blog_id)
     context = {'blog': blog}
-    return render(request, template_name='blogs/blog_detail.html', context=context)
+    return render(request, template_name='blog/blog_detail.html', context=context)
 
 @login_required
 def create_blog(request):
@@ -64,3 +64,7 @@ def delete_blog(request, blog_id):
     else:
         context = {'blog': blog}
         return render(request, template_name='blog/delete_blog.html', context=context)
+
+
+def about(request):
+    return render(request, template_name='blog/about.html')

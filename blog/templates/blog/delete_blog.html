@@ -1,11 +1,18 @@
-{% extends 'blogs/base.html' %}
+{% extends 'blog/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+    <h1 class="text-center mb-4">Delete Blog Post</h1>
+{% endblock page_header %}
 
 {% block content %}
-
-<form method='post'>
-{% csrf_token %}
-<h2> Do you really want to delete this blog? </h2>
-<button type='submit'>Delete</button>
-</form>
-
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Do you want to delete this post?</h4>
+        <p><strong>Title:</strong> {{ blog.title }}</p>
+        <p><strong>Content:</strong> {{ blog.body|truncatewords:30 }}</p>
+        <form method="post">
+            {% csrf_token %}
+            {% bootstrap_button button_type="submit" content="Delete" %}
+        </form>
+    </div>
 {% endblock content %}
