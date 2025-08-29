@@ -51,3 +51,7 @@ media/
 Thumbs.db
 ehthumbs.db
 
+blog-env/
+__pycache__/
+*.sqlite3
+.mypy_cache/
